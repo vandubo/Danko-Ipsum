@@ -1,0 +1,24 @@
+.ipsum-heading {
+    margin-bottom: 50px;
+}
+
+.ipsum-result {
+    
+    overflow: auto;
+}
+
+.ipsum-result-container {
+    margin-bottom: 70px;
+}
+.lead {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#ipsum-tabs .tab-content {
+    padding: 20px;
+    background-color: #295182;
+}
+
+.nav-pills > li.active > a {
+    background-color: #295182;
+}

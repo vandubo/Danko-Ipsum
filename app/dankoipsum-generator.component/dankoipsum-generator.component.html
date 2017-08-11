@@ -1,0 +1,117 @@
+<div class="ipsum-heading">
+    <h1>Kpt. Danko Ipsum Generator</h1>
+    <p class="lead">Budem taktom konať, ako rozprávam</p>
+</div>
+<div class="well col-lg-4">
+    <form class="form-horizontal" (ngSubmit)="formSubmitted()">
+        <legend>Nastavenie</legend>
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 control-label">Koľkom</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control ipsum-val-config" [(ngModel)]="ipsumValue">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Čohom</label>
+            <div class="col-lg-10">
+                <div class="radio-inline">
+                    <label for="radio-paragraph">
+                        <input type="radio"
+                            name="IpsumSettings"
+                            id="radio-paragraph"
+                            value="paragraph"
+                            [checked]="selectedIpsum === 'paragraph'"
+                            (change)="onIpsumSelected('paragraph')">
+                            odstavce
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label for="radio-word">
+                        <input type="radio"
+                            [checked]="selectedIpsum === 'word'"
+                            (change)="onIpsumSelected('word')"
+                            value="word"
+                            id="radio-word"
+                            name="IpsumSettings">
+                            slová
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label for="radio-list">
+                        <input type="radio"
+                            [checked]="selectedIpsum === 'list'"
+                            (change)="onIpsumSelected('list')"
+                            value="list"
+                            id="radio-list"
+                            name="IpsumSettings">
+                            odrážky
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-lg btn-danger">Stojím si za tom</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="ipsum-result-container col-lg-7 col-lg-offset-1 well"
+    *ngIf="ipsumContent != null && ipsumContent.length > 0">
+    <div class="ipsum-result">
+        <div *ngIf="selectedIpsum == 'paragraph'">
+            
+            <legend>Odstavce</legend>
+            <div id="ipsum-tabs">
+                <ul class="nav nav-pills">
+                    <li class="active">
+                        <a  href="#1a" data-toggle="tab">Text</a>
+                    </li>
+                    <li>
+                        <a href="#2a" data-toggle="tab">Markup</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="1a">
+                        <p *ngFor="#qt of ipsumContent[0]">{{qt}}</p>
+                    </div>
+                    <div class="tab-pane" id="2a">
+                        <p *ngFor="#qt of ipsumContent[1]">{{qt}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="selectedIpsum == 'word'">
+            <legend>Slová</legend>
+            <p *ngFor="#qt of ipsumContent">{{qt}}</p>
+        </div>
+        <div *ngIf="selectedIpsum == 'list'">
+
+            <legend>Odrážky</legend>
+            <div id="ipsum-tabs">
+                <ul class="nav nav-pills">
+                    <li class="active">
+                        <a  href="#1a" data-toggle="tab">Text</a>
+                    </li>
+                    <li>
+                        <a href="#2a" data-toggle="tab">Markup</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="1a">
+                        <ul>
+                            <li *ngFor="#qt of ipsumContent[0]">{{qt}}</li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="2a">
+                        <p>{{ ipsumContent[1] }}</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
